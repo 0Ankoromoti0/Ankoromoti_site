@@ -29,7 +29,7 @@ a:hover {
 }
 
 header {
-    height: 1100px;
+    height: 65px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
