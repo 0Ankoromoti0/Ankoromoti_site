@@ -26,6 +26,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+
 /* Sidebar */
 .sidebar {
   position: fixed;
@@ -133,6 +134,7 @@ body {
   justify-content: center;
   border-radius: 4px;
 }
+
 .sidebar_profile {
   padding-top: 15px;
   margin-top: 15px;
@@ -147,6 +149,7 @@ body {
   font-size: 15px;
   color: #333;
 }
+
 /* Navbar */
 .navbar {
   max-width: 500px;
@@ -167,11 +170,23 @@ body {
   margin-right: 20px;
   display: none;
 }
+.search_box {
+  height: 46px;
+  max-width: 500px;
+  width: 100%;
+  border: 1px solid #aaa;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 15px;
+  font-size: 18px;
+  color: #333;
+}
 .navbar img {
   height: 40px;
   width: 40px;
   margin-left: 20px;
 }
+
 /* Responsive */
 @media screen and (max-width: 1100px) {
   .navbar {
