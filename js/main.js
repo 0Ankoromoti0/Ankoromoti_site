@@ -1,45 +1,45 @@
-// Selecting the sidebar and buttons
-const sidebar = document.querySelector(".sidebar");
-const sidebarOpenBtn = document.querySelector("#sidebar-open");
-const sidebarCloseBtn = document.querySelector("#sidebar-close");
-const sidebarLockBtn = document.querySelector("#lock-icon");
-// Function to toggle the lock state of the sidebar
-const toggleLock = () => {
-  sidebar.classList.toggle("locked");
-  // If the sidebar is not locked
-  if (!sidebar.classList.contains("locked")) {
-    sidebar.classList.add("hoverable");
-    sidebarLockBtn.classList.replace("bx-lock-alt", "bx-lock-open-alt");
-  } else {
-    sidebar.classList.remove("hoverable");
-    sidebarLockBtn.classList.replace("bx-lock-open-alt", "bx-lock-alt");
-  }
-};
-// Function to hide the sidebar when the mouse leaves
-const hideSidebar = () => {
-  if (sidebar.classList.contains("hoverable")) {
-    sidebar.classList.add("close");
-  }
-};
-// Function to show the sidebar when the mouse enter
-const showSidebar = () => {
-  if (sidebar.classList.contains("hoverable")) {
-    sidebar.classList.remove("close");
-  }
-};
-// Function to show and hide the sidebar
-const toggleSidebar = () => {
-  sidebar.classList.toggle("close");
-};
-// If the window width is less than 800px, close the sidebar and remove hoverability and lock
-if (window.innerWidth < 800) {
-  sidebar.classList.add("close");
-  sidebar.classList.remove("locked");
-  sidebar.classList.remove("hoverable");
+function TextTypingAnime() {
+	$('.TextTyping').each(function () {
+		var elemPos = $(this).offset().top - 50;
+		var scroll = $(window).scrollTop();
+		var windowHeight = $(window).height();
+		var thisChild = "";
+		if (scroll >= elemPos - windowHeight) {
+			thisChild = $(this).children(); 
+			thisChild.each(function (i) {
+				var time = 100;
+				$(this).delay(time * i).fadeIn(time);
+			});
+		} else {
+			thisChild = $(this).children();
+			thisChild.each(function () {
+				$(this).stop(); 
+				$(this).css("display", "none"); 
+			});
+		}
+	});
 }
-// Adding event listeners to buttons and sidebar for the corresponding actions
-sidebarLockBtn.addEventListener("click", toggleLock);
-sidebar.addEventListener("mouseleave", hideSidebar);
-sidebar.addEventListener("mouseenter", showSidebar);
-sidebarOpenBtn.addEventListener("click", toggleSidebar);
-sidebarCloseBtn.addEventListener("click", toggleSidebar);
+$(window).scroll(function () {
+	TextTypingAnime();
+});
+
+// 画面が読み込まれたらすぐに動かしたい場合の記述
+$(window).on('load', function () {
+	//spanタグを追加する
+	var element = $(".TextTyping");
+	element.each(function () {
+		var text = $(this).html();
+		var textbox = "";
+		text.split('').forEach(function (t) {
+			if (t !== " ") {
+				textbox += '<span>' + t + '</span>';
+			} else {
+				textbox += t;
+			}
+		});
+		$(this).html(textbox);
+
+	});
+
+	TextTypingAnime();/* アニメーション用の関数を呼ぶ*/
+});// ここまで画面が読み込まれたらすぐに動かしたい場合の記述
